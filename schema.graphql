@@ -1,0 +1,126 @@
+type AGLStakingAddressChanged @entity(immutable: true) {
+  id: Bytes!
+  _aglStakingAddress: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type CollSurplusPoolAddressChanged @entity(immutable: true) {
+  id: Bytes!
+  _collSurplusPoolAddress: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type GasPoolAddressChanged @entity(immutable: true) {
+  id: Bytes!
+  _gasPoolAddress: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Initialized @entity(immutable: true) {
+  id: Bytes!
+  version: Int! # uint8
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type OwnershipTransferred @entity(immutable: true) {
+  id: Bytes!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type SortedTrovesAddressChanged @entity(immutable: true) {
+  id: Bytes!
+  _sortedTrovesAddress: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type StabilityPoolManagerAddressChanged @entity(immutable: true) {
+  id: Bytes!
+  _stabilityPoolAddress: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type TroveCreated @entity(immutable: true) {
+  id: Bytes!
+  _asset: Bytes! # address
+  _borrower: Bytes! # address
+  arrayIndex: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type TroveManagerAddressChanged @entity(immutable: true) {
+  id: Bytes!
+  _newTroveManagerAddress: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type TroveUpdated @entity(immutable: true) {
+  id: Bytes!
+  _asset: Bytes! # address
+  _borrower: Bytes! # address
+  _debt: BigInt! # uint256
+  _coll: BigInt! # uint256
+  stake: BigInt! # uint256
+  operation: Int! # uint8
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type TroveUpdated1 @entity(immutable: true) {
+  id: Bytes!
+  _asset: Bytes! # address
+  _borrower: Bytes! # address
+  _debt: BigInt! # uint256
+  _coll: BigInt! # uint256
+  stake: BigInt! # uint256
+  operation: Int! # uint8
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type USDABorrowingFeePaid @entity(immutable: true) {
+  id: Bytes!
+  _asset: Bytes! # address
+  _borrower: Bytes! # address
+  _USDAFee: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type USDATokenAddressChanged @entity(immutable: true) {
+  id: Bytes!
+  _usdaTokenAddress: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type VaultParametersBaseChanged @entity(immutable: true) {
+  id: Bytes!
+  newAddress: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}

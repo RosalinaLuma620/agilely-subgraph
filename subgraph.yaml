@@ -1,0 +1,63 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: BorrowerOperations
+    network: goerli
+    source:
+      address: "0xaC8cEF2b2Dc99B3e700BB7dF110508d8E2036a90"
+      abi: BorrowerOperations
+      startBlock: 9808280
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AGLStakingAddressChanged
+        - CollSurplusPoolAddressChanged
+        - GasPoolAddressChanged
+        - Initialized
+        - OwnershipTransferred
+        - SortedTrovesAddressChanged
+        - StabilityPoolManagerAddressChanged
+        - TroveCreated
+        - TroveManagerAddressChanged
+        - TroveUpdated
+        - TroveUpdated1
+        - USDABorrowingFeePaid
+        - USDATokenAddressChanged
+        - VaultParametersBaseChanged
+      abis:
+        - name: BorrowerOperations
+          file: ./abis/BorrowerOperations.json
+      eventHandlers:
+        - event: AGLStakingAddressChanged(address)
+          handler: handleAGLStakingAddressChanged
+        - event: CollSurplusPoolAddressChanged(address)
+          handler: handleCollSurplusPoolAddressChanged
+        - event: GasPoolAddressChanged(address)
+          handler: handleGasPoolAddressChanged
+        - event: Initialized(uint8)
+          handler: handleInitialized
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: SortedTrovesAddressChanged(address)
+          handler: handleSortedTrovesAddressChanged
+        - event: StabilityPoolManagerAddressChanged(address)
+          handler: handleStabilityPoolManagerAddressChanged
+        - event: TroveCreated(indexed address,indexed address,uint256)
+          handler: handleTroveCreated
+        - event: TroveManagerAddressChanged(address)
+          handler: handleTroveManagerAddressChanged
+        - event: TroveUpdated(indexed address,indexed address,uint256,uint256,uint256,uint8)
+          handler: handleTroveUpdated
+        - event: TroveUpdated(indexed address,indexed address,uint256,uint256,uint256,uint8)
+          handler: handleTroveUpdated1
+        - event: USDABorrowingFeePaid(indexed address,indexed address,uint256)
+          handler: handleUSDABorrowingFeePaid
+        - event: USDATokenAddressChanged(address)
+          handler: handleUSDATokenAddressChanged
+        - event: VaultParametersBaseChanged(indexed address)
+          handler: handleVaultParametersBaseChanged
+      file: ./src/borrower-operations.ts

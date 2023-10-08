@@ -1,0 +1,8 @@
+{
+  "goerli": {
+    "BorrowerOperations": {
+      "address": "0xaC8cEF2b2Dc99B3e700BB7dF110508d8E2036a90",
+      "startBlock": 9808280
+    }
+  }
+}
