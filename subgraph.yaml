@@ -14,50 +14,43 @@ dataSources:
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - AGLStakingAddressChanged
-        - CollSurplusPoolAddressChanged
-        - GasPoolAddressChanged
-        - Initialized
-        - OwnershipTransferred
-        - SortedTrovesAddressChanged
-        - StabilityPoolManagerAddressChanged
         - TroveCreated
-        - TroveManagerAddressChanged
         - TroveUpdated
-        - TroveUpdated1
-        - USDABorrowingFeePaid
-        - USDATokenAddressChanged
-        - VaultParametersBaseChanged
       abis:
         - name: BorrowerOperations
           file: ./abis/BorrowerOperations.json
       eventHandlers:
-        - event: AGLStakingAddressChanged(address)
-          handler: handleAGLStakingAddressChanged
-        - event: CollSurplusPoolAddressChanged(address)
-          handler: handleCollSurplusPoolAddressChanged
-        - event: GasPoolAddressChanged(address)
-          handler: handleGasPoolAddressChanged
-        - event: Initialized(uint8)
-          handler: handleInitialized
-        - event: OwnershipTransferred(indexed address,indexed address)
-          handler: handleOwnershipTransferred
-        - event: SortedTrovesAddressChanged(address)
-          handler: handleSortedTrovesAddressChanged
-        - event: StabilityPoolManagerAddressChanged(address)
-          handler: handleStabilityPoolManagerAddressChanged
         - event: TroveCreated(indexed address,indexed address,uint256)
           handler: handleTroveCreated
-        - event: TroveManagerAddressChanged(address)
-          handler: handleTroveManagerAddressChanged
         - event: TroveUpdated(indexed address,indexed address,uint256,uint256,uint256,uint8)
           handler: handleTroveUpdated
-        - event: TroveUpdated(indexed address,indexed address,uint256,uint256,uint256,uint8)
-          handler: handleTroveUpdated1
-        - event: USDABorrowingFeePaid(indexed address,indexed address,uint256)
-          handler: handleUSDABorrowingFeePaid
-        - event: USDATokenAddressChanged(address)
-          handler: handleUSDATokenAddressChanged
-        - event: VaultParametersBaseChanged(indexed address)
-          handler: handleVaultParametersBaseChanged
       file: ./src/borrower-operations.ts
+  - kind: ethereum
+    name: TroveManager
+    network: goerli
+    source:
+      address: "0x579Cb57Cf46076fE66bf569775Cc703ba31C5799"
+      abi: TroveManager
+      startBlock: 9795860
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - TroveLiquidated
+        - TroveUpdated
+        - SystemSnapshotsUpdated
+        - TroveSnapshotsUpdated
+      abis:
+        - name: TroveManager
+          file: ./abis/TroveManager.json
+      eventHandlers:
+        - event: TroveLiquidated(indexed address,indexed address,uint256,uint256,uint8)
+          handler: handleTroveLiquidated
+        - event: TroveUpdated(indexed address,indexed address,uint256,uint256,uint256,uint8)
+          handler: handleTroveUpdated
+        - event: SystemSnapshotsUpdated(indexed address,uint256,uint256)
+          handler: handleSystemSnapshotsUpdated
+        - event: TroveSnapshotsUpdated(indexed address,uint256,uint256)
+          handler: handleTroveSnapshotsUpdated
+      file: ./src/trove-manager.ts

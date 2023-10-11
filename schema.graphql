@@ -1,6 +1,23 @@
 type AGLStakingAddressChanged @entity(immutable: true) {
   id: Bytes!
-  _aglStakingAddress: Bytes! # address
+  _AGLStakingAddress: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type BaseRateUpdated @entity(immutable: true) {
+  id: Bytes!
+  _asset: Bytes! # address
+  _baseRate: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type BorrowerOperationsAddressChanged @entity(immutable: true) {
+  id: Bytes!
+  _newBorrowerOperationsAddress: Bytes! # address
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
@@ -30,10 +47,53 @@ type Initialized @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
+type LTermsUpdated @entity(immutable: true) {
+  id: Bytes!
+  _asset: Bytes! # address
+  _L_ETH: BigInt! # uint256
+  _L_USDADebt: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type LastFeeOpTimeUpdated @entity(immutable: true) {
+  id: Bytes!
+  _asset: Bytes! # address
+  _lastFeeOpTime: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Liquidation @entity(immutable: true) {
+  id: Bytes!
+  _asset: Bytes! # address
+  _liquidatedDebt: BigInt! # uint256
+  _liquidatedColl: BigInt! # uint256
+  _collGasCompensation: BigInt! # uint256
+  _USDAGasCompensation: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
 type OwnershipTransferred @entity(immutable: true) {
   id: Bytes!
   previousOwner: Bytes! # address
   newOwner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Redemption @entity(immutable: true) {
+  id: Bytes!
+  _asset: Bytes! # address
+  _attemptedAGLmount: BigInt! # uint256
+  _actualAGLmount: BigInt! # uint256
+  _AssetSent: BigInt! # uint256
+  _AssetFee: BigInt! # uint256
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
@@ -49,25 +109,67 @@ type SortedTrovesAddressChanged @entity(immutable: true) {
 
 type StabilityPoolManagerAddressChanged @entity(immutable: true) {
   id: Bytes!
-  _stabilityPoolAddress: Bytes! # address
+  _stabilityPoolManagerAddress: Bytes! # address
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
 
-type TroveCreated @entity(immutable: true) {
+type SystemSnapshotsUpdated @entity(immutable: true) {
+  id: Bytes!
+  _asset: Bytes! # address
+  _totalStakesSnapshot: BigInt! # uint256
+  _totalCollateralSnapshot: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type SystemUnpaidInterestUpdated @entity(immutable: true) {
+  id: Bytes!
+  _asset: Bytes! # address
+  unpaidInterest: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type TotalStakesUpdated @entity(immutable: true) {
+  id: Bytes!
+  _asset: Bytes! # address
+  _newTotalStakes: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type TroveIndexUpdated @entity(immutable: true) {
   id: Bytes!
   _asset: Bytes! # address
   _borrower: Bytes! # address
-  arrayIndex: BigInt! # uint256
+  _newIndex: BigInt! # uint256
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
 
-type TroveManagerAddressChanged @entity(immutable: true) {
+type TroveLiquidated @entity(immutable: true) {
   id: Bytes!
-  _newTroveManagerAddress: Bytes! # address
+  _asset: Bytes! # address
+  _borrower: Bytes! # address
+  _debt: BigInt! # uint256
+  _coll: BigInt! # uint256
+  operation: Int! # uint8
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type TroveSnapshotsUpdated @entity(immutable: true) {
+  id: Bytes!
+  _asset: Bytes! # address
+  _L_ETH: BigInt! # uint256
+  _L_USDADebt: BigInt! # uint256
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
@@ -86,32 +188,9 @@ type TroveUpdated @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
-type TroveUpdated1 @entity(immutable: true) {
-  id: Bytes!
-  _asset: Bytes! # address
-  _borrower: Bytes! # address
-  _debt: BigInt! # uint256
-  _coll: BigInt! # uint256
-  stake: BigInt! # uint256
-  operation: Int! # uint8
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type USDABorrowingFeePaid @entity(immutable: true) {
-  id: Bytes!
-  _asset: Bytes! # address
-  _borrower: Bytes! # address
-  _USDAFee: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
 type USDATokenAddressChanged @entity(immutable: true) {
   id: Bytes!
-  _usdaTokenAddress: Bytes! # address
+  _USDATokenAddress: Bytes! # address
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
@@ -120,6 +199,16 @@ type USDATokenAddressChanged @entity(immutable: true) {
 type VaultParametersBaseChanged @entity(immutable: true) {
   id: Bytes!
   newAddress: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type VaultUnpaidInterestUpdated @entity(immutable: true) {
+  id: Bytes!
+  _asset: Bytes! # address
+  _vault: Bytes! # address
+  unpaidInterest: BigInt! # uint256
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
